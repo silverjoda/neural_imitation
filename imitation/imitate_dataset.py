@@ -18,10 +18,10 @@ class DataSetImitator:
     def imitate_dataset(self, path, policy):
         obs_arr = np.load(path + "/obs.npy")
         act_arr = np.load(path + "/act.npy")
-        dataset = xy_dataset(obs_arr, act_arr)
+        dataset = xy_dataset.XYDataSet(obs_arr, act_arr)
 
         loss_fun = T.nn.MSELoss()
-        optim = T.optim.Adam(params=policy.parameters(), lr=self.config["lr"])
+        optim = T.optim.Adam(params=policy.parameters(), lr=self.config["lr"], weight_decay=self.config["weight_decay"])
 
         iters = self.config["imitation_iters"]
         for i in range(iters):
@@ -38,11 +38,6 @@ class DataSetImitator:
             trn_loss.backward()
             optim.step()
             optim.zero_grad()
-
-
-
-
-
 
 if __name__ == "__main__":
     dataset_imit = DataSetImitator()

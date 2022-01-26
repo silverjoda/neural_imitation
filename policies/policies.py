@@ -15,7 +15,7 @@ class MLP(nn.Module):
         self.fc3 = T.nn.Linear(self.hid_dim, self.act_dim, bias=True)
 
     def forward(self, x):
-        fc1 = F.tanh(self.fc1(x))
-        fc2 = F.tanh(self.fc2(fc1)) * 1
+        fc1 = T.tanh(self.fc1(x))
+        fc2 = T.tanh(self.fc2(fc1)) * 1
         out = self.fc3(fc2)
         return out

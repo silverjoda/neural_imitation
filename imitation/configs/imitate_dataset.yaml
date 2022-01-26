@@ -1,4 +1,5 @@
 "dataset_path" : "dataset/marv_rocket/det"
-"imitation_iters" : 100
+"imitation_iters" : 10000
 "batchsize" : 64
 "lr" : 0.001
+"weight_decay" : 0.001
